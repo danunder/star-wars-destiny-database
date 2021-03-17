@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {changeLimit} from "../../redux/actions/setActions";
 import Card from '../card/Card';
 import { useSelector, useDispatch } from "react-redux";
 import Button from '../input/Button';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
+// This component handles sorting and filtering of card data
 function List() {
 
-    const [sort, setSort] = React.useState([]);
-    const [load] = React.useState(true);
-    const [error] = React.useState(false);
+    const [sort, setSort] = useState([]);
+    const [load] = useState(true);
+    const [error] = useState(false);
 
-    const itemLimit =useSelector(state=>state.itemLimit);
-    const sorted =useSelector(state=>state.sorted);
+    const itemLimit = useSelector(state=>state.itemLimit);
+    const sorted = useSelector(state=>state.sorted);
     const name = useSelector(state => state.name);
     const cardText = useSelector(state => state.cardText);
-    const cards =useSelector(state=>state.cards);
-    const formats =useSelector(state=>state.formats);
+    // populated from API call
+    const cards = useSelector(state=>state.cards);
+    const formats = useSelector(state=>state.formats);
 
     const dispatch = useDispatch();
 

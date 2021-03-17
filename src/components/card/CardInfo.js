@@ -83,7 +83,7 @@ function CardInfo(props) {
 
     let formats = rst.map((fm, idx) =>
         <div key={idx} className={"format"}>
-            <h3>{fm.name}</h3>
+            <h3>{fm.name&&fm.name.split(" ")[0]}</h3>
             <h5 className={"restrict"}>{fm.restricted ? "Restricted" : null}</h5>
             <h3>{fm.balance}</h3>
             <h6 className={!fm.legal ? "restrict" : null}>{fm.legal ? "Playable" : "Unplayable"}</h6>

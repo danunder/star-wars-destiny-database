@@ -53,17 +53,18 @@ function Options(props){
         {
             name:"Health",
             type:"health",
-            values:[4,5,6,7,8,9,10,11,12,13,14,15]
+            values:[4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
         },
         {
             name:"Cost",
             type:"cost",
-            values:[0,1,2,3,4,5,6]
+            values:[0,1,2,3,4,5,6,7,8]
         },
         {
             name:"Set",
             type:"set_name",
-            values:Sets},
+            values: Sets
+        },
         {
             name:"Points",
             type:"points",
@@ -111,7 +112,7 @@ function Options(props){
 
     return (
         <div className={"options"} style={show}>
-            <div className={"top"}><h1 style={{color:style.nav}}>Sort Cards </h1><Button handleClick={() => dispatch(clearOptions())} text={"Clear Search Query"}/></div>
+            <div className={"top"}><h1 style={{color:style.nav}}>Filter Cards </h1><Button handleClick={() => dispatch(clearOptions())} text={"Clear Search Query"}/></div>
             <div className={"wrapper"}>
                 {options}
             </div>

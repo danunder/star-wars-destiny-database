@@ -517,7 +517,7 @@ html {
 }
 @media screen and (min-width: 500px) {
   .cardPageWrapper .cardInfo {
-    width: 400px;
+    width: 450px;
   }
 }
 .cardPageWrapper .cardInfo .subtypes {
