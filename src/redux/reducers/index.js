@@ -20,6 +20,7 @@ const initState = {
     },
     style:JSON.parse(localStorage.getItem('localStyle')) || '',
     name: "",
+    cardText: "",
     options:false,
     styles:false
 
@@ -75,6 +76,13 @@ const rootReducer = (state = initState, action) => {
         return{
             ...state,
             name:action.name
+        }
+    }
+
+    if(action.type === 'SET_CARD_TEXT'){
+        return{
+            ...state,
+            cardText:action.cardText
         }
     }
 

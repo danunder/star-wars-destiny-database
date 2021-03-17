@@ -11,6 +11,13 @@ export const setName = (name) => {
     }
 };
 
+export const setCardText = (cardText) => {
+    return {
+        type: 'SET_CARD_TEXT',
+        cardText:cardText
+    }
+};
+
 export const setSort = (prop, val) => {
     return {
         type: 'SET_SORT',
