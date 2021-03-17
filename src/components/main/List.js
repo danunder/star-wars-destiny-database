@@ -13,7 +13,8 @@ function List() {
 
     const itemLimit =useSelector(state=>state.itemLimit);
     const sorted =useSelector(state=>state.sorted);
-    const name =useSelector(state=>state.name);
+    const name = useSelector(state => state.name);
+    const cardText = useSelector(state => state.cardText);
     const cards =useSelector(state=>state.cards);
     const formats =useSelector(state=>state.formats);
 
@@ -141,6 +142,17 @@ function List() {
                 });
             }
 
+            if (cardText !== '') {
+                sortedList = sortedList.filter(crd => {
+                    if (crd.text&&crd.text.includes(cardText)) {
+                        return true
+                    } else if (crd.text&&crd.text.toLowerCase().includes(cardText)) {
+                        return true
+                    } else return crd.text&&crd.text.toUpperCase().includes(cardText);
+                });
+            }
+
+
 
             setSort(sortedList)
         }
@@ -151,7 +163,7 @@ function List() {
             sortObject();
         }
 
-    }, [load, name, sorted, cards, formats]);
+    }, [load, name, cardText, sorted, cards, formats]);
 
 
     let cardEle;

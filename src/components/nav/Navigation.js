@@ -2,6 +2,7 @@ import React from 'react';
 import {toggleOptions, clearOptions, toggleStyles} from "../../redux/actions/setActions";
 import { useDispatch, useSelector } from "react-redux";
 import Search from '../input/Search';
+import TextSearch from '../input/TextSearch';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch, faTimes, faPalette} from '@fortawesome/free-solid-svg-icons';
 
@@ -28,7 +29,7 @@ function Nav() {
                 {(style.name!==undefined)?<img alt={"logo"} src={require("./../../assets/"+style.name.toLowerCase()+"logo.svg")} onClick={()=>dispatch(clearOptions())}/>:<img alt={"logo"} src={require("./../../assets/convergencelogo.svg")} onClick={()=>dispatch(clearOptions())}/>}
                 <h5>Database</h5>
             </div>
-            <Search/>
+            <Search/><TextSearch/>
             <div className={"ham"} >
 
                 {!styles && <FontAwesomeIcon icon={faPalette} size="2x" onClick={() => dispatch(toggleStyles())}/>}

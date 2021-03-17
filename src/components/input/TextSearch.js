@@ -26,12 +26,12 @@ function TextSearch(props) {
     let sg = {
         color: style.nav
     };
-
+    
     let close = (cardText!==""?<FontAwesomeIcon style={sg} icon={faTimes} onClick={()=>dispatch(setCardText(""))}/>:null);
 
     return (
         <div className={"searchContainer"}>
-            <input style={sty} placeholder={"Search Card by card text..."} value={cardText} onChange={handleChange}
+            <input style={sty} placeholder={"Search Card by Card Text..."} value={cardText} onChange={handleChange}
                    className={"search "+style.name}/>
             {close}
         </div>
@@ -43,4 +43,4 @@ function TextSearch(props) {
 
 
 
-export default Search;
+export default TextSearch;
