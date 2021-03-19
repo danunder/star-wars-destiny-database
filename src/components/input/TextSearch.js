@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
-import { setName, setCardText } from "../../redux/actions/setActions";
+import React, { useState } from 'react';
+import { setCardText } from "../../redux/actions/setActions";
 import { useSelector, useDispatch } from "react-redux";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import Button from './Button';
 
 function TextSearch(props) {
 
-    // we don't do this in REDUX. no local state right? DO SOME READING.
-    const { searchType, setSearchType } = useState("card name")
+    
 
     const style =useSelector(state=>state.style);
 
     const cardText = useSelector(state => state.cardText);
-    const name = useSelector(state=>state.name);
+    
     const dispatch = useDispatch();
 
     const handleChange = event => {
@@ -36,8 +36,9 @@ function TextSearch(props) {
 
     return (
         <div className={"searchContainer"}>
-            <input style={sty} placeholder={`Search Card by ${searchType}...`} value={cardText} onChange={handleChange}
+            <input style={sty} placeholder={`Filter cards by card text... `} value={cardText} onChange={handleChange}
                    className={"search "+style.name}/>
+           
             {close}
         </div>
 

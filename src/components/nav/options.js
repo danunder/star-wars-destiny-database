@@ -84,7 +84,7 @@ function Options(props){
         {
             name:"Formats",
             type:"formats",
-            values:["Standard", "Trilogy", "Infinite"]
+            values:["Standard", "Trilogy", "Infinite", "ARH Standard", "TCI Standard"]
         },
         {
             name: "Restricted",
