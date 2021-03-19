@@ -8,7 +8,8 @@ function Options(props){
 
     const style =useSelector(state=>state.style);
     const Options =useSelector(state=>state.options);
-    const sets =useSelector(state=>state.sets);
+    const sets = useSelector(state => state.sets);
+    const formats = useSelector(state => state.formats);
     const dispatch = useDispatch();
 
     let show;
@@ -32,6 +33,8 @@ function Options(props){
     for(let i=0; i<sets.length; i++){
         Sets.push(sets[i].name)
     }
+
+        
 
     let Sort = [
 
@@ -84,7 +87,7 @@ function Options(props){
         {
             name:"Formats",
             type:"formats",
-            values:["Standard", "Trilogy", "Infinite", "ARH Standard", "TCI Standard"]
+            values: formats.map(frmt => frmt.name)
         },
         {
             name: "Restricted",

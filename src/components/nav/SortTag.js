@@ -54,11 +54,11 @@ function SortTag(props){
             return <span><span className='icon icon-blank'></span> Blank</span>
         }else if(vl==="+"){
             return <span>Modified</span>
-        }else if(vl.includes("H")){
+        }else if(vl.includes("H") && vl !== "ARH Standard"){
             return <span><FontAwesomeIcon icon={faHeart}/> {vl.substring(0, vl.length - 1)}</span>
         }else if(vl.includes("P")){
             return <span><FontAwesomeIcon icon={faCircle}/> {vl.substring(0, vl.length - 1)}</span>
-        }else if(vl.includes("C")){
+        }else if(vl.includes("C" && vl !== "TCI Standard")){
             return <span><span className='icon icon-resource '></span> {vl.substring(0, vl.length - 1)}</span>
         }else if (isNaN(vl)) {
             return vl.charAt(0).toUpperCase() + vl.substring(1)
