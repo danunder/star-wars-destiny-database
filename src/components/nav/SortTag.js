@@ -69,11 +69,11 @@ function SortTag(props){
 
     let text = (vl)=>{
 
-        if(vl.includes("H")){
+        if(vl.includes("H" && vl !== "ARH Standard")){
             return Number(vl.substring(0, vl.length - 1));
         }else if(vl.includes("P")){
             return vl.substring(0, vl.length - 1)
-        }else if(vl.includes("C")){
+        }else if(vl.includes("C" && vl !== "TCI Standard")){
             return Number(vl.substring(0, vl.length - 1));
         }else{
             return vl
