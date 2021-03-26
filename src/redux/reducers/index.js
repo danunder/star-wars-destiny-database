@@ -1,29 +1,37 @@
 const initState = {
-    cards:[],
+    // populated from API
+    cards: [],
     formats:[],
     sets:[],
     itemLimit: 10,
+    // options in sort panel
     sorted:{
-        rarity_name: {toggle: false, val: []},
-        affiliation_code: {toggle: false, val: []},
-        type_code: {toggle: false, val: []},
-        faction_code: {toggle: false, val: []},
-        set_name:{toggle:false,val:[]},
-        health: {toggle: false, val: []},
-        cost: {toggle: false, val: []},
-        points: {toggle: false, val: []},
-        sides:{toggle: false, val:[]},
-        formats:{toggle:false, val:[]},
-        restricted:{toggle:false,val:[]},
-        balanced:{toggle:false,val:[]},
-        keywords:{toggle:false,val:[]}
+        rarity_name: { toggle: false, val: [] },
+        affiliation_code: { toggle: false, val: [] },
+        type_code: { toggle: false, val: [] },
+        faction_code: { toggle: false, val: [] },
+        set_name: { toggle:false, val:[] },
+        health: { toggle: false, val: [] },
+        cost: { toggle: false, val: [] },
+        points: { toggle: false, val: [] },
+        sides: { toggle: false, val:[] },
+        formats: { toggle: false, val:[] },
+        restricted: { toggle: false, val:[] },
+        balanced: { toggle: false, val: [] },
+        subtypes: {toggle: false, val: []},
+        keywords: { toggle: false, val:[] }
     },
     style:JSON.parse(localStorage.getItem('localStyle')) || '',
+    //variables for search strings
     name: "",
     cardText: "",
     options:false,
-    styles:false
+    styles:false,
+    deck: {
+        cards: [],
+        description: "",
 
+    }
 
 };
 
@@ -132,10 +140,12 @@ const rootReducer = (state = initState, action) => {
                 sides:{toggle: false, val:[]},
                 formats:{toggle:false, val:[]},
                 restricted:{toggle:false,val:[]},
-                balanced:{toggle:false,val:[]},
+                balanced: { toggle: false, val: [] },
+                subtypes: {toggle: false, val: []},
                 keywords:{toggle:false,val:[]}
             },
             name: "",
+            cardText: "",
             options:false,
             styles:false
         }
