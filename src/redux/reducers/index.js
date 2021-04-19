@@ -1,6 +1,12 @@
 const initState = {
     // populated from API
     cards: [],
+    filterValues: {
+        health: [],
+        cost: [],
+        points: [],
+        subtypes: []
+    },
     formats:[],
     sets:[],
     itemLimit: 10,
@@ -155,6 +161,42 @@ const rootReducer = (state = initState, action) => {
         return{
             ...state,
             cards:action.cards
+        }
+    }
+
+    if (action.type === 'SET_FILTER_VALUES') {
+        const filterValues = {
+            health: [],
+            cost: [],
+            points: [],
+            subtypes: []
+        }
+        action.cards.forEach(card => {
+            if (card.health && !filterValues.health.includes(card.health)) {
+                filterValues.health.push(card.health)
+            }
+            if (card.cost && !filterValues.cost.includes(card.cost)) {
+                filterValues.cost.push(card.cost)
+            }
+            if (card.points) {
+                const pointValues = card.points.split("/");
+                pointValues.forEach(pointValue => {
+                    if (!filterValues.points.includes(parseInt(pointValue))) {
+                        filterValues.points.push(parseInt(pointValue))
+                    }
+                })
+            }
+            if (card.subtypes) {
+                card.subtypes.forEach(subtype => {
+                    if (!filterValues.subtypes.includes(subtype.name)) {
+                        filterValues.subtypes.push(subtype.name)
+                    }
+                })
+            }
+        })
+        return{
+            ...state,
+            filterValues: filterValues
         }
     }
 

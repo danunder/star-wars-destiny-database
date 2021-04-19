@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './less/style.css';
+
 import List from './components/main/List';
 import CardPage from './components/card/CardPage';
 import About from './components/main/About';
@@ -12,7 +13,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSpinner, faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 
 import { useDispatch, useSelector } from "react-redux";
-import {setCards, setFormats, setSets} from "./redux/actions/setActions";
+import {setCards, setFilterValues, setFormats, setSets} from "./redux/actions/setActions";
 
 import {
     Switch,
@@ -23,20 +24,20 @@ import {
 
 function App() {
 
-    const [show, updateShow] = React.useState(false);
-    const [seconds, setSeconds] = React.useState(0);
-    const [pad, setPad] = React.useState(60);
-    const [loadCard, setLoadCards] = React.useState("load");
-    const [loadFormat, setLoadFormat] = React.useState("load");
-    const [loadSet, setLoadSet] = React.useState("load");
-    const [load, setLoad] =React.useState("load");
+    const [show, updateShow] = useState(false);
+    const [seconds, setSeconds] = useState(0);
+    const [pad, setPad] = useState(60);
+    const [loadCard, setLoadCards] = useState("load");
+    const [loadFormat, setLoadFormat] = useState("load");
+    const [loadSet, setLoadSet] = useState("load");
+    const [load, setLoad] = useState("load");
 
     const style =useSelector(state=>state.style);
     const sorted =useSelector(state=>state.sorted);
     const dispatch = useDispatch();
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         localStorage.setItem('localStyle', JSON.stringify(style));
         if(load==="load"){
             fetch("https://swdestinydb.com/api/public/cards/")
@@ -46,6 +47,7 @@ function App() {
                 .then((data) => {
                     setLoadCards("loaded");
                     dispatch(setCards(data));
+                    dispatch(setFilterValues(data));
                 }).catch(function () {
                 setLoadCards("error");
             });
@@ -57,9 +59,8 @@ function App() {
                     setLoadFormat("loaded");
                     dispatch(setFormats(data));
                 }).catch(function () {
-                setLoadFormat("error");
-            });
-            //
+                    setLoadFormat("error");
+                });
             fetch("https://swdestinydb.com/api/public/sets/")
                 .then(response => {
                     return response.json();

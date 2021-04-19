@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {clearOptions} from "../../redux/actions/setActions";
 import { useDispatch, useSelector } from "react-redux";
 import Option from './Option';
@@ -6,8 +6,9 @@ import Button from '../input/Button';
 
 function Options(props){
 
-    const style =useSelector(state=>state.style);
-    const Options =useSelector(state=>state.options);
+    const style = useSelector(state => state.style);
+    const cards = useSelector(state => state.cards);
+    const Options = useSelector(state => state.options);
     const sets = useSelector(state => state.sets);
     const formats = useSelector(state => state.formats);
     const dispatch = useDispatch();
@@ -28,15 +29,34 @@ function Options(props){
         }
     }
 
-    let Sets = [];
-
-    for(let i=0; i<sets.length; i++){
-        Sets.push(sets[i].name)
+    // this should be moved into state store!
+    const values = {
+        health: [],
+        cost: [],
+        points: [],
+        subtypes: []
     }
-
+            
+    useEffect(() => {
         
+        cards.forEach(card => {
+            // if (card.health) {
+            //     if (!values.health.includes(card.health)){
+            //         values.health.push(card.health)
+            //     }
+            // }
+            if (card.cost) {
+                if (!values.cost.includes(card.cost)) {
+                    values.cost.push(card.cost)
+                }
+            }
+            // if (card.points) { values.points.includes(card.points) ? null : values.points.push(card.points) }
+            // if (card.subtypes) { values.subtypes.includes(card.subtypes) ? null : values.subtypes.push(card.subtypes) }
+            
+        });
+    }, [cards])
 
-    let Sort = [
+    const Sort = [
 
         {
             name: "Affiliations",
@@ -61,12 +81,12 @@ function Options(props){
         {
             name:"Cost",
             type:"cost",
-            values:[0,1,2,3,4,5,6,7,8]
+            values: values.cost.sort((a, b) => a - b)
         },
         {
             name:"Set",
             type:"set_name",
-            values: Sets
+            values: sets.map(set => set.name)
         },
         {
             name:"Points",
@@ -98,11 +118,6 @@ function Options(props){
             name: "Balanced",
             type:"balanced",
             values:["balanced"]
-        },
-        {
-            name: "Keywords",
-            type:"keywords",
-            values:["Guardian", "Ambush", "Redeploy"]
         }
 
     ];

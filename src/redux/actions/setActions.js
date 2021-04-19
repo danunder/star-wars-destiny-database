@@ -59,6 +59,13 @@ export const setCards = (cards) =>{
     }
 };
 
+export const setFilterValues = (cards) =>{
+    return {
+        type: 'SET_FILTER_VALUES',
+        cards:cards
+    }
+};
+
 export const setFormats = (fmts) =>{
     return {
         type: 'SET_FORMATS',
