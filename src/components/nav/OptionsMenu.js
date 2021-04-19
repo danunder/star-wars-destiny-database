@@ -93,6 +93,11 @@ function OptionsMenu(props){
             name: "Balanced",
             type:"balanced",
             values:["balanced"]
+        },
+        {
+            name: "Subtypes",
+            type: "subtypes",
+            values: filterValues.subtypes.sort((a, b) => a - b)
         }
 
     ];

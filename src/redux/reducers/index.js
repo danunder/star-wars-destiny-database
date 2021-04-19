@@ -24,7 +24,7 @@ const initState = {
         formats: { toggle: false, val:[] },
         restricted: { toggle: false, val:[] },
         balanced: { toggle: false, val: [] },
-        subtypes: {toggle: false, val: []},
+        subtypes: {toggle: false, val: [] },
         keywords: { toggle: false, val:[] }
     },
     style:JSON.parse(localStorage.getItem('localStyle')) || '',

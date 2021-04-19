@@ -75,6 +75,19 @@ function List() {
                         }
 
 
+                    }
+                    else if (p === "subtypes") {
+                        sortedList = sortedList.filter(crd => {
+                            let ret = false;
+                            for(let i=0; i<sorted.subtypes.val.length; i++){
+                                if (crd.subtypes && crd.subtypes.map(x => x.name).includes(sorted.subtypes.val[i])){
+                                    ret=true;
+                                }
+                            }
+                            return (ret ? crd : null);
+                        });
+                    
+                        
                     } else if (p === 'formats') {
                         sortedList = sortedList.filter(crd => {
                             let ret = false;
