@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Option from './Option';
 import Button from '../input/Button';
 
-function Options(props){
+function OptionsMenu(props){
 
     const style = useSelector(state => state.style);
     const filterValues = useSelector(state => state.filterValues);
@@ -49,7 +49,9 @@ function Options(props){
         {
             name:"Health",
             type:"health",
-            values: filterValues.health.sort((a, b) => a - b)
+            values:
+                // [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18]
+                filterValues.health.sort((a, b) => a - b)
         },
         {
             name:"Cost",
@@ -118,4 +120,4 @@ function Options(props){
 
 
 
-export default Options;
+export default OptionsMenu;

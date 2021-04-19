@@ -21,18 +21,18 @@ function SortNav(props) {
                 check = true;
                 for(let x=0; x<sorted[p].val.length; x++){
                     let obj = {
-                        prop:p,
-                        val:""
+                        prop: p,
+                        val: sorted[p].val[x]
                     };
-                    if(p==='health'){
-                        obj.val=sorted[p].val[x]+"H";
-                    }else if(p==='points'){
-                        obj.val=sorted[p].val[x]+"P";
-                    }else if(p==='cost'){
-                        obj.val=sorted[p].val[x]+"C";
-                    }else{
-                        obj.val=sorted[p].val[x];
-                    }
+                    // if(p ==='health'){
+                    //     obj.val=sorted[p].val[x]+"H";
+                    // }else if(p ==='points'){
+                    //     obj.val=sorted[p].val[x]+"P";
+                    // }else if(p ==='cost'){
+                    //     obj.val=sorted[p].val[x]+"C";
+                    // }else{
+                    //     obj.val=sorted[p].val[x];
+                    // }
                     tagArray.push(obj)
                 }
             }
@@ -62,7 +62,7 @@ if (show) {
 
 
 let tagEles = tags.map((st, idx) =>
-    <SortTag key={idx} val={st.val} prp={st.prop}/>
+    <SortTag key={idx} val={st.val} prop={st.prop}/>
 );
 
 return (

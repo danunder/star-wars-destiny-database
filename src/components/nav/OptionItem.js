@@ -100,8 +100,15 @@ function OptionItem(props) {
 
 
     return (
-        <div className={"item"} onMouseEnter={hoverChange}
-             onMouseLeave={hoverChange} style={shower} onClick={() => handleSort(props.type, props.value)}>{sorted[props.type].val.includes(props.value) && sorted[props.type].toggle ? <FontAwesomeIcon icon={faCheckSquare}/> :<FontAwesomeIcon icon={faSquare}/>} {numberCheck()}</div>
+        <div
+            className={"item"}
+            onMouseEnter={hoverChange}
+            onMouseLeave={hoverChange}
+            style={shower}
+            onClick={() => handleSort(props.type, props.value)}
+        >
+            {sorted[props.type].val.includes(props.value) && sorted[props.type].toggle ? <FontAwesomeIcon icon={faCheckSquare} /> : <FontAwesomeIcon icon={faSquare} />} {numberCheck()}
+        </div>
     );
 
 }

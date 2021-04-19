@@ -31,59 +31,50 @@ function SortTag(props){
         setHover(!hover)
     };
 
-    const numberCheck = (vl) => {
-        if(vl==="RD"){
+    const numberCheck = (prop, val) => {
+        if(val==="RD"){
             return <span><span className='icon icon-ranged'></span> Ranged</span>
-        }else if(vl==="Sh"){
+        }else if(val==="Sh"){
             return <span><span className='icon icon-shield'></span> Shield</span>
-        }else if(vl==="MD"){
+        }else if(val==="MD"){
             return <span><span className='icon icon-melee'></span> Melee</span>
-        }else if(vl==="ID"){
+        }else if(val==="ID"){
             return <span><span className='icon icon-indirect'></span> Indirect</span>
-        }else if(vl==="Dc"){
+        }else if(val==="Dc"){
             return <span><span className='icon icon-discard'></span> Discard</span>
-        }else if(vl==="Dr"){
+        }else if(val==="Dr"){
             return <span><span className='icon icon-disrupt'></span> Disrupt</span>
-        }else if(vl==="F"){
+        }else if(val==="F"){
             return <span><span className='icon icon-focus'></span> Focus</span>
-        }else if(vl==="Sp"){
+        }else if(val==="Sp"){
             return <span><span className='icon icon-special'></span> Special</span>
-        }else if(vl==="R"){
+        }else if(val==="R"){
             return <span><span className='icon icon-resource'></span> Special</span>
-        }else if(vl==="-"){
+        }else if(val==="-"){
             return <span><span className='icon icon-blank'></span> Blank</span>
-        }else if(vl==="+"){
+        }else if(val==="+"){
             return <span>Modified</span>
-        }else if(vl.includes("H") && vl !== "ARH Standard"){
-            return <span><FontAwesomeIcon icon={faHeart}/> {vl.substring(0, vl.length - 1)}</span>
-        }else if(vl.includes("P")){
-            return <span><FontAwesomeIcon icon={faCircle}/> {vl.substring(0, vl.length - 1)}</span>
-        }else if(vl.includes("C" && vl !== "TCI Standard")){
-            return <span><span className='icon icon-resource '></span> {vl.substring(0, vl.length - 1)}</span>
-        }else if (isNaN(vl)) {
-            return vl.charAt(0).toUpperCase() + vl.substring(1)
+        }else if(prop === "health"){
+            return <span><FontAwesomeIcon icon={faHeart}/> {val}</span>
+        }else if(prop === "points"){
+            return <span><FontAwesomeIcon icon={faCircle}/> {val}</span>
+        }else if(prop === "cost"){
+            return <span><span className='icon icon-resource' /> {val}</span>
+        }else if (isNaN(val)) {
+            return val.charAt(0).toUpperCase() + val.substring(1)
         } else {
-            return vl
-        }
-    };
-
-    let text = (vl)=>{
-
-        if(vl.includes("H" && vl !== "ARH Standard")){
-            return Number(vl.substring(0, vl.length - 1));
-        }else if(vl.includes("P")){
-            return vl.substring(0, vl.length - 1)
-        }else if(vl.includes("C" && vl !== "TCI Standard")){
-            return Number(vl.substring(0, vl.length - 1));
-        }else{
-            return vl
+            return val
         }
     };
 
     return (
-        <div className={"itm"} onClick={()=>handleSort(props.prp,(props.prp==="set_name"?props.val:text(props.val)))}
-            style={styler} onMouseEnter={hoverChange}
-             onMouseLeave={hoverChange}>{(props.prp==="set_name"?props.val:numberCheck(props.val))} <FontAwesomeIcon icon={faTimes}/></div>
+        <div className={"itm"}
+            onClick={() => handleSort(props.prop, props.val)}
+            style={styler}
+            onMouseEnter={hoverChange}
+            onMouseLeave={hoverChange}>
+            {numberCheck(props.prop, props.val)} <FontAwesomeIcon icon={faTimes} />
+        </div>
     )
 }
 
