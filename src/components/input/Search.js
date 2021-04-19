@@ -24,7 +24,7 @@ function Search(props) {
     };
 
     let sg = {
-        color: style.nav
+        color: 'black'
     };
 
     let close = (name!==""?<FontAwesomeIcon style={sg} icon={faTimes} onClick={()=>dispatch(setName(""))}/>:null);

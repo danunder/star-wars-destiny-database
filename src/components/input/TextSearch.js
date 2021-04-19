@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { setCardText } from "../../redux/actions/setActions";
 import { useSelector, useDispatch } from "react-redux";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import Button from './Button';
+
 
 function TextSearch(props) {
 
@@ -27,7 +27,7 @@ function TextSearch(props) {
     };
 
     let sg = {
-        color: style.nav
+        color: 'black'
     };
     
     

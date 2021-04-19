@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {clearOptions} from "../../redux/actions/setActions";
 import { useDispatch, useSelector } from "react-redux";
 import Option from './Option';
@@ -7,7 +7,7 @@ import Button from '../input/Button';
 function Options(props){
 
     const style = useSelector(state => state.style);
-    const cards = useSelector(state => state.cards);
+    const filterValues = useSelector(state => state.filterValues);
     const Options = useSelector(state => state.options);
     const sets = useSelector(state => state.sets);
     const formats = useSelector(state => state.formats);
@@ -28,34 +28,7 @@ function Options(props){
             color:style.nav
         }
     }
-
-    // this should be moved into state store!
-    const values = {
-        health: [],
-        cost: [],
-        points: [],
-        subtypes: []
-    }
-            
-    useEffect(() => {
-        
-        cards.forEach(card => {
-            // if (card.health) {
-            //     if (!values.health.includes(card.health)){
-            //         values.health.push(card.health)
-            //     }
-            // }
-            if (card.cost) {
-                if (!values.cost.includes(card.cost)) {
-                    values.cost.push(card.cost)
-                }
-            }
-            // if (card.points) { values.points.includes(card.points) ? null : values.points.push(card.points) }
-            // if (card.subtypes) { values.subtypes.includes(card.subtypes) ? null : values.subtypes.push(card.subtypes) }
-            
-        });
-    }, [cards])
-
+  
     const Sort = [
 
         {
@@ -76,12 +49,12 @@ function Options(props){
         {
             name:"Health",
             type:"health",
-            values:[4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+            values: filterValues.health.sort((a, b) => a - b)
         },
         {
             name:"Cost",
             type:"cost",
-            values: values.cost.sort((a, b) => a - b)
+            values: filterValues.cost.sort((a, b) => a - b)
         },
         {
             name:"Set",
@@ -91,7 +64,7 @@ function Options(props){
         {
             name:"Points",
             type:"points",
-            values:["4","5","6","7","8","9","10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"]
+            values: filterValues.points.sort((a, b) => a - b).map(x => x.toString())
         },
         {
             name:"Type",

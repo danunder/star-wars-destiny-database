@@ -29,7 +29,8 @@ function Nav() {
                 {(style.name!==undefined)?<img alt={"logo"} src={require("./../../assets/"+style.name.toLowerCase()+"logo.svg")} onClick={()=>dispatch(clearOptions())}/>:<img alt={"logo"} src={require("./../../assets/convergencelogo.svg")} onClick={()=>dispatch(clearOptions())}/>}
                 <h5>Database</h5>
             </div>
-            <Search/><TextSearch/>
+            <Search />
+            <TextSearch />
             <div className={"ham"} >
 
                 {!styles && <FontAwesomeIcon icon={faPalette} size="2x" onClick={() => dispatch(toggleStyles())}/>}
