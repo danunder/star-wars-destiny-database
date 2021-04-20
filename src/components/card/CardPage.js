@@ -7,6 +7,8 @@ import CardInfo from './CardInfo';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSpinner, faExclamationCircle, faTimes, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 import {useSelector} from "react-redux";
+import { modifyDeckCount } from '../../redux/actions/setActions';
+import Button from '../input/Button';
 
 
 function CardPage(props) {
@@ -51,15 +53,24 @@ function CardPage(props) {
 
     const code = card.code;
     const incrementer = {
-        margin: 10
+        margin: 10,
+        
+        
+    }
+    const addToDeck = () => {
+        console.log("HELLO")
+        return modifyDeckCount(code, "+1")
+    }
+     const removeFromDeck = () => {
+        return modifyDeckCount(code, "-1")
     }
 
-
     return (
-        <Link className={props.match.params.id ? "cardPageWrapper" : undefined} to={"/"}>
+        <div className={props.match.params.id ? "cardPageWrapper" : undefined} >
 
-            <div className={"close"} style={{backgroundColor: style.navText, color:style.nav}}>
-                <FontAwesomeIcon icon={faTimes} size={"4x"}/>
+            <div className={"close"} style={{ backgroundColor: style.navText, color: style.nav }}>
+                <Link to={"/"} ><FontAwesomeIcon icon={faTimes} size={"4x"}/></Link>
+                
             </div>
 
             {rend.load && <FontAwesomeIcon icon={faSpinner} spin size={"lg"} style={{color: style.loadColor}}/>}
@@ -69,18 +80,25 @@ function CardPage(props) {
                 <Card name={card.name} bod={false} imagesrc={card.imagesrc} code={card.code} loadColor={"white"} />}
             <div className={"deckControls"}>
                 <h2 className={"cardCount"}>0</h2>
+                <div
+                    style={{zIndex: 1}}
+                    onClick={() => addToDeck} >
+                    <FontAwesomeIcon
+                        style={incrementer }
+                        icon={faPlusCircle}
+                        size={"4x"} />
+                </div>
+                <div onClick={() => removeFromDeck}>
                 <FontAwesomeIcon
-                    style={incrementer }
-                    icon={faPlusCircle}
-                    size={"4x"} />
-                <FontAwesomeIcon
+                    
                     style={incrementer}
                     icon={faMinusCircle}
-                    size={"4x"} />
+                        size={"4x"} />
+                    </div>
             </div>
             {code && <CardInfo crd={card} code={code}/>}
 
-        </Link>
+        </div>
     )
 }
 
