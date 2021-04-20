@@ -6,7 +6,7 @@ import Card from './Card';
 import CardInfo from './CardInfo';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSpinner, faExclamationCircle, faTimes, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch } from "react-redux";
 import { modifyDeckCount } from '../../redux/actions/setActions';
 import Button from '../input/Button';
 
@@ -22,7 +22,8 @@ function CardPage(props) {
     });
 
     const style =useSelector(state=>state.style);
-    const cards =useSelector(state=>state.cards);
+    const cards = useSelector(state => state.cards);
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
 
@@ -57,13 +58,10 @@ function CardPage(props) {
         
         
     }
-    const addToDeck = () => {
-        console.log("HELLO")
-        return modifyDeckCount(code, "+1")
-    }
-     const removeFromDeck = () => {
-        return modifyDeckCount(code, "-1")
-    }
+    const addToDeck = () => dispatch(modifyDeckCount(code, "+1"))
+        
+    const removeFromDeck = () => dispatch(modifyDeckCount(code, "-1"))
+    
 
     return (
         <div className={props.match.params.id ? "cardPageWrapper" : undefined} >
@@ -82,13 +80,13 @@ function CardPage(props) {
                 <h2 className={"cardCount"}>0</h2>
                 <div
                     style={{zIndex: 1}}
-                    onClick={() => addToDeck} >
+                    onClick={() => dispatch(modifyDeckCount(code, "+1"))} >
                     <FontAwesomeIcon
                         style={incrementer }
                         icon={faPlusCircle}
                         size={"4x"} />
                 </div>
-                <div onClick={() => removeFromDeck}>
+                <div onClick={() => dispatch(modifyDeckCount(code, "-1"))}>
                 <FontAwesomeIcon
                     
                     style={incrementer}
