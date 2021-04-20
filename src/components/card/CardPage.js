@@ -5,7 +5,7 @@ import {
 import Card from './Card';
 import CardInfo from './CardInfo';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSpinner, faExclamationCircle, faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faSpinner, faExclamationCircle, faTimes, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 import {useSelector} from "react-redux";
 
 
@@ -50,6 +50,9 @@ function CardPage(props) {
     ;
 
     const code = card.code;
+    const incrementer = {
+        margin: 10
+    }
 
 
     return (
@@ -63,7 +66,18 @@ function CardPage(props) {
             {rend.error && <FontAwesomeIcon icon={faExclamationCircle} style={{color: "red"}} size={"6x"}/>}
 
             {rend.crd &&
-            <Card name={card.name} bod={false} imagesrc={card.imagesrc} code={card.code} loadColor={"white"}/>}
+                <Card name={card.name} bod={false} imagesrc={card.imagesrc} code={card.code} loadColor={"white"} />}
+            <div className={"deckControls"}>
+                <h2 className={"cardCount"}>0</h2>
+                <FontAwesomeIcon
+                    style={incrementer }
+                    icon={faPlusCircle}
+                    size={"4x"} />
+                <FontAwesomeIcon
+                    style={incrementer}
+                    icon={faMinusCircle}
+                    size={"4x"} />
+            </div>
             {code && <CardInfo crd={card} code={code}/>}
 
         </Link>

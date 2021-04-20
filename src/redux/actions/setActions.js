@@ -1,3 +1,11 @@
+export const modifyDeckCount = (card, val) => {
+    return {
+        type: 'MODIFY_DECK_COUNT',
+        card: card,
+        val: val
+    }
+}
+
 export const changeLimit = () => {
     return {
         type: 'INCREASE_LIMIT'

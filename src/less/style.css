@@ -770,6 +770,20 @@ html {
     box-shadow: 0px 0px 0px;
   }
 }
+
+.deckControls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 100px;
+  }
+
+  .cardCount {
+    font-size: 4rem
+  }
+
 .button {
   min-width: 100px;
   cursor: pointer;
