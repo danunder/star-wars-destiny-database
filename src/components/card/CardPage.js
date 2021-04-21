@@ -59,10 +59,10 @@ function CardPage(props) {
     
 
     return (
-        <div className={props.match.params.id ? "cardPageWrapper" : undefined} >
+         <Link to={"/"} className={props.match.params.id ? "cardPageWrapper" : undefined} >
 
             <div className={"close"} style={{ backgroundColor: style.navText, color: style.nav }}>
-                <Link to={"/"} ><FontAwesomeIcon icon={faTimes} size={"4x"}/></Link>
+               <FontAwesomeIcon icon={faTimes} size={"4x"}/>
                 
             </div>
 
@@ -78,7 +78,7 @@ function CardPage(props) {
                 <CardInfo crd={card} code={code} />
                 }
 
-        </div>
+        </Link>
     )
 }
 

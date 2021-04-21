@@ -92,7 +92,7 @@ function Card(props) {
                             style={imgStyle}
                     />
                     <CardControls code={props.code} deckLimit={props.deckLimit} deckCount={props.deckCount} display={display}/>
-
+                    
                     </div>}
                     {rend.load&&<FontAwesomeIcon icon={faSpinner} spin size={"lg"} style={{color:props.loadColor}}/>}
                     {rend.error&&<div className={"errorBox"}><h4 style={{color:(props.bod?style.bodyText:'white')}}>Error Loading Image</h4><div className="fa-layers fa-fw"><FontAwesomeIcon style={{color:"white"}} icon={faCircle} size={"6x"} /><FontAwesomeIcon icon={faExclamationCircle} style={{color:"red"}} size={"6x"}/></div></div>}

@@ -194,7 +194,7 @@ const rootReducer = (state = initState, action) => {
     if (action.type === 'SET_FILTER_VALUES') {
         const filterValues = {
             health: [],
-            cost: [],
+            cost: [0],
             points: [],
             subtypes: []
         }
