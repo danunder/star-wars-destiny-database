@@ -9,6 +9,7 @@ import {faSpinner, faExclamationCircle, faTimes, faPlusCircle, faMinusCircle} fr
 import {useSelector, useDispatch } from "react-redux";
 import { modifyDeckCount } from '../../redux/actions/setActions';
 import Button from '../input/Button';
+import CardControls from './CardControls';
 
 
 function CardPage(props) {
@@ -74,24 +75,9 @@ function CardPage(props) {
 
             {rend.crd &&
                 <Card name={card.name} bod={false} imagesrc={card.imagesrc} code={card.code} loadColor={"white"} />}
-            <div className={"deckControls"}>
-                <h2 className={"cardCount"}>{deck[code]? deck[code] : 0}</h2>
-                <div
-                    style={{zIndex: 1}}
-                    onClick={() => dispatch(modifyDeckCount(code, "+1"))} >
-                    <FontAwesomeIcon
-                        style={incrementer }
-                        icon={faPlusCircle}
-                        size={"4x"} />
-                </div>
-                <div onClick={() => dispatch(modifyDeckCount(code, "-1"))}>
-                <FontAwesomeIcon
-                    
-                    style={incrementer}
-                    icon={faMinusCircle}
-                        size={"4x"} />
-                    </div>
-            </div>
+            <CardControls
+                code={card.code}
+                />
             {code && <CardInfo crd={card} code={code}/>}
 
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSpinner, faExclamationCircle, faCircle} from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from "react-redux";
+import CardControls from './CardControls';
 function Card(props) {
 
     const [load, updateLoading] = React.useState("loading");
@@ -80,14 +81,15 @@ function Card(props) {
             {props.bod&&rend.error?<h1 style={{color:style.bodyText}}>{props.name}</h1>:null}
             <div className={"cardWrapper"}>
                 {rend.img &&
-                    <div>
+                    <div style={{position:'relative'}}>
                         <img
                             alt={props.name}
                             onLoad={handleImageLoad}
                             onError={handleImageError}
                             src={props.imagesrc}
-                        style={imgStyle} />
-                    <h2 className={"deckCount"}>{props.deckCount? props.deckCount : null}</h2>
+                            style={imgStyle}
+                    />
+                    {props.deckCount && <CardControls/>}
 
                     </div>}
                     {rend.load&&<FontAwesomeIcon icon={faSpinner} spin size={"lg"} style={{color:props.loadColor}}/>}
