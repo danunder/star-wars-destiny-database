@@ -23,6 +23,7 @@ function CardPage(props) {
 
     const style =useSelector(state=>state.style);
     const cards = useSelector(state => state.cards);
+    const deck = useSelector(state => state.deck.cards)
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -58,9 +59,6 @@ function CardPage(props) {
         
         
     }
-    const addToDeck = () => dispatch(modifyDeckCount(code, "+1"))
-        
-    const removeFromDeck = () => dispatch(modifyDeckCount(code, "-1"))
     
 
     return (
@@ -77,7 +75,7 @@ function CardPage(props) {
             {rend.crd &&
                 <Card name={card.name} bod={false} imagesrc={card.imagesrc} code={card.code} loadColor={"white"} />}
             <div className={"deckControls"}>
-                <h2 className={"cardCount"}>0</h2>
+                <h2 className={"cardCount"}>{deck[code]? deck[code] : 0}</h2>
                 <div
                     style={{zIndex: 1}}
                     onClick={() => dispatch(modifyDeckCount(code, "+1"))} >

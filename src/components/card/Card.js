@@ -11,7 +11,8 @@ function Card(props) {
         error:false
     });
     const [seconds, setSeconds] = React.useState(0);
-    const style =useSelector(state=>state.style);
+    const style = useSelector(state => state.style);
+    
 
     React.useEffect(() => {
         let interval = null;
@@ -78,8 +79,17 @@ function Card(props) {
         <div className={"card"}>
             {props.bod&&rend.error?<h1 style={{color:style.bodyText}}>{props.name}</h1>:null}
             <div className={"cardWrapper"}>
-                {rend.img && <img alt={props.name} onLoad={handleImageLoad} onError={handleImageError} src={props.imagesrc} style={imgStyle}/>}
+                {rend.img &&
+                    <div>
+                        <img
+                            alt={props.name}
+                            onLoad={handleImageLoad}
+                            onError={handleImageError}
+                            src={props.imagesrc}
+                        style={imgStyle} />
+                    <h2 className={"deckCount"}>{props.deckCount? props.deckCount : null}</h2>
 
+                    </div>}
                     {rend.load&&<FontAwesomeIcon icon={faSpinner} spin size={"lg"} style={{color:props.loadColor}}/>}
                     {rend.error&&<div className={"errorBox"}><h4 style={{color:(props.bod?style.bodyText:'white')}}>Error Loading Image</h4><div className="fa-layers fa-fw"><FontAwesomeIcon style={{color:"white"}} icon={faCircle} size={"6x"} /><FontAwesomeIcon icon={faExclamationCircle} style={{color:"red"}} size={"6x"}/></div></div>}
 

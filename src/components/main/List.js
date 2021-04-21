@@ -18,7 +18,8 @@ function List() {
     const cardText = useSelector(state => state.cardText);
     // populated from API call
     const cards = useSelector(state=>state.cards);
-    const formats = useSelector(state=>state.formats);
+    const formats = useSelector(state => state.formats);
+    const deck = useSelector(state => state.deck.cards);
 
     const dispatch = useDispatch();
 
@@ -189,7 +190,7 @@ function List() {
 
             <Link to={"/card/" + crd.code} key={idx} className={"cardFlop"}>
 
-                <Card name={crd.name} bod={true} imagesrc={crd.imagesrc} code={crd.code}
+                <Card name={crd.name} bod={true} imagesrc={crd.imagesrc} code={crd.code} deckCount={deck[crd.code]? deck[crd.code]:null}
                       loadColor={"#343740"}/>
             </Link>
         );
