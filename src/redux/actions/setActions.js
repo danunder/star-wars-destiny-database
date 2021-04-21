@@ -1,9 +1,8 @@
-export const modifyDeckCount = (card, val, deckLimit) => {
+export const modifyDeckCount = (code, val) => {
     return {
         type: 'MODIFY_DECK_COUNT',
-        card: card,
-        val: val,
-        deckLimit: deckLimit
+        code: code,
+        val: val
     }
 }
 
