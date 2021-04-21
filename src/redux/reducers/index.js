@@ -47,26 +47,26 @@ const initState = {
 const rootReducer = (state = initState, action) => {
 
     if (action.type === 'MODIFY_DECK_COUNT') {
-        let cards = state.deck.cards;
+        let deck = state.deck.cards;
         const card = action.card
         if (action.val === "+1") {
-            if (cards[card]) {
-                cards[card] += 1;
-            } else {
-                cards[card] = 1;
+            if (deck[card] && deck[card] < action.deckLimit) {
+                deck[card] += 1;
+            } else if (!deck[card]) {
+                deck[card] = 1;
             }
         }
         if (action.val === "-1") {
-            cards[card] -= 1;
-            if (cards[card] === 0) {
-                delete cards[card]
+            deck[card] -= 1;
+            if (deck[card] === 0) {
+                delete deck[card]
             }
         }
             
         return {
             ...state,
             deck: {
-                cards: cards
+                cards: deck
             }
         }
     }
@@ -184,7 +184,8 @@ const rootReducer = (state = initState, action) => {
     }
 
     if(action.type === 'SET_CARDS'){
-        return{
+       
+        return {
             ...state,
             cards:action.cards
         }

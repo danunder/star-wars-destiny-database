@@ -11,13 +11,20 @@ import { modifyDeckCount } from '../../redux/actions/setActions';
 function CardControls(props) {
 
   // LOGIC
-
+  
+  const { code, deckCount, deckLimit, display } = props;
+  
   const dispatch = useDispatch();
-  const deck = useSelector(state => state.deck.cards)
-  // const addToDeck = () => 
+  const addToDeck = (e) => {
+    e.preventDefault();
+    dispatch(modifyDeckCount(code, "+1", deckLimit))
+  }
 
-  const { code } = props
-  const count = deck[code]? deck[code] : 0
+  const removeFromDeck = (e) => {
+    e.preventDefault();
+    dispatch(modifyDeckCount(code, "-1", deckLimit))
+  }
+
   
 
   // STYLE
@@ -26,11 +33,13 @@ function CardControls(props) {
     position: 'absolute',
     height: '51%',
     width: '25%',
+    maxHeight: '250px',
+    maxWidth: '100px',
     margin: 'auto',
     overflow: 'auto',
     top: '0', left: '0', bottom: '0', right: '0',
     zIndex: '1',
-    backgroundColor: 'rgba(40, 44, 52, 0.77)',
+    backgroundColor: 'rgba(40, 44, 52, 0.55)',
     padding: '0 1rem',
     borderRadius: '2rem'
   }
@@ -46,25 +55,26 @@ function CardControls(props) {
   
   const incrementerStyle = {
     margin: '10',
+    color: 'rgba(255, 255, 255, 0.8)'
     
   }
 
-  const cardCountStyle = {
+  const deckCountStyle = {
     color: 'rgba(255, 255, 255, 0.8)',
     textShadow: '#000 0px 0px 1px',  
     fontSize: '4rem'
   }
 
-  return (<div style={floatingBoxStyle}>
+  return (<div style={display? floatingBoxStyle: {display: 'none'}}>
             <div style={cardControlsStyle}>
-              <div onClick={() => dispatch(modifyDeckCount(code, "+1"))} >
+              <div onClick={(e) => addToDeck(e)} >
                 <FontAwesomeIcon
                   style={incrementerStyle}
                   icon={faPlusCircle}
                   size={"3x"} />
               </div>
-              <h2 style={cardCountStyle}>{count? count : 0}</h2>
-              <div onClick={() => dispatch(modifyDeckCount(code, "-1"))}>
+              <h2 style={deckCountStyle}>{deckCount? deckCount : 0}</h2>
+              <div onClick={(e) => removeFromDeck(e)}>
                 <FontAwesomeIcon
                   style={incrementerStyle}
                   icon={faMinusCircle}

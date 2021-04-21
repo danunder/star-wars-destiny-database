@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSpinner, faExclamationCircle, faCircle} from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ function Card(props) {
     });
     const [seconds, setSeconds] = React.useState(0);
     const style = useSelector(state => state.style);
-    
+    const [display, setDisplay] = useState(false)
 
     React.useEffect(() => {
         let interval = null;
@@ -77,7 +77,9 @@ function Card(props) {
 
 
     return (
-        <div className={"card"}>
+        <div className={"card"}
+            onMouseEnter={() => setDisplay(!display)}
+            onMouseLeave={() => setDisplay(!display)}>
             {props.bod&&rend.error?<h1 style={{color:style.bodyText}}>{props.name}</h1>:null}
             <div className={"cardWrapper"}>
                 {rend.img &&
@@ -89,7 +91,7 @@ function Card(props) {
                             src={props.imagesrc}
                             style={imgStyle}
                     />
-                    {props.deckCount && <CardControls/>}
+                    <CardControls code={props.code} deckLimit={props.deckLimit} deckCount={props.deckCount} display={display}/>
 
                     </div>}
                     {rend.load&&<FontAwesomeIcon icon={faSpinner} spin size={"lg"} style={{color:props.loadColor}}/>}

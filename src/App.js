@@ -46,6 +46,7 @@ function App() {
                 })
                 .then((data) => {
                     setLoadCards("loaded");
+                    
                     dispatch(setCards(data));
                     dispatch(setFilterValues(data));
                 }).catch(function () {

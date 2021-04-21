@@ -25,7 +25,7 @@ function CardPage(props) {
     const style =useSelector(state=>state.style);
     const cards = useSelector(state => state.cards);
     const deck = useSelector(state => state.deck.cards)
-    const dispatch = useDispatch();
+    
 
     React.useEffect(() => {
 
@@ -55,11 +55,7 @@ function CardPage(props) {
     ;
 
     const code = card.code;
-    const incrementer = {
-        margin: 10,
-        
-        
-    }
+    
     
 
     return (
@@ -75,10 +71,12 @@ function CardPage(props) {
 
             {rend.crd &&
                 <Card name={card.name} bod={false} imagesrc={card.imagesrc} code={card.code} loadColor={"white"} />}
-            <CardControls
-                code={card.code}
-                />
-            {code && <CardInfo crd={card} code={code}/>}
+                <CardControls code={code} deckLimit={card.deck_limit} deckCount={deck[card.code]? deck[card.code]:0} display={true}/>
+                
+            {code &&
+                
+                <CardInfo crd={card} code={code} />
+                }
 
         </div>
     )
