@@ -4,14 +4,13 @@ import {faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { modifyDeckCount } from '../../redux/actions/setActions';
 
-function CardControls(props) {
+export default function CardControls(props) {
 
   // LOGIC
-  // deckCount and deckLimit can be accessed from store. 
+  // display prop is true/false triggered by hover state of parent element
   const { code, display } = props;
-  const deck = useSelector(state => state.deck)
-  const deckCount = deck.cards[code] ? deck.cards[code] : null
-  
+  const deck = useSelector(state => state.deck);
+  const deckCount = deck.cards[code] ? deck.cards[code] : null;  
 
   const dispatch = useDispatch();
 
@@ -108,7 +107,7 @@ function CardControls(props) {
                     icon={faMinusCircle}
                     size={"3x"} />
                 </div>
-      </div>
+              </div>
       {/* This heading displays non-zero deck counts when the card is NOT being hovered */}
               <h2 style={display ? { display: 'none' } : floatingTextStyle} >{deckCount ? deckCount : ""}</h2>
             </div>
@@ -123,4 +122,3 @@ function CardControls(props) {
     
 
 
-export default CardControls;
