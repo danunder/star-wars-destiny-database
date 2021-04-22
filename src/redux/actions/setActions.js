@@ -33,7 +33,11 @@ export const setSort = (prop, val) => {
         val: val
     }
 };
-
+export const toggleDeck = () => {
+    return {
+        type: 'TOGGLE_DECK'
+    }
+};
 export const toggleOptions = () => {
     return {
         type: 'TOGGLE_OPTIONS'

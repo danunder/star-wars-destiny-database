@@ -15,7 +15,7 @@ export default function CardControls(props) {
   
   const deckLimit = card.deck_limit;
   const deckCount = deck.cards[code] ? deck.cards[code] : null;
-    
+  // const canBeElite = card.points && card.points.includes("/");
   const dispatch = useDispatch();
 
   const addToDeck = (e) => {
@@ -114,7 +114,7 @@ export default function CardControls(props) {
                     icon={faPlusCircle}
                     size={"3x"} />
                 </div>
-                <h2 style={deckCountStyle}>{deckCount? deckCount : 0}</h2>
+        <h2 style={deckCountStyle}>{deckCount ? deckCount : 0}</h2>
                 <div onClick={(e) => removeFromDeck(e)}>
                   <FontAwesomeIcon
                     onMouseEnter={() => setMinusHover(true)}

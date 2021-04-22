@@ -1,16 +1,17 @@
 import React from 'react';
-import {toggleOptions, clearOptions, toggleStyles} from "../../redux/actions/setActions";
+import {toggleOptions, clearOptions, toggleStyles, toggleDeck } from "../../redux/actions/setActions";
 import { useDispatch, useSelector } from "react-redux";
 import Search from '../input/Search';
 import TextSearch from '../input/TextSearch';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSearch, faTimes, faPalette} from '@fortawesome/free-solid-svg-icons';
+import {faSearch, faTimes, faPalette, faBoxOpen} from '@fortawesome/free-solid-svg-icons';
 
 function Nav() {
 
     const options = useSelector(state=>state.options);
     const styles = useSelector(state=>state.styles);
-    const style = useSelector(state=>state.style);
+    const style = useSelector(state => state.style);
+    const deck = useSelector(state => state.deck.show)
 
     const dispatch = useDispatch();
 
@@ -33,8 +34,10 @@ function Nav() {
             <TextSearch />
             <div className={"ham"} >
 
-                {!styles && <FontAwesomeIcon icon={faPalette} size="2x" onClick={() => dispatch(toggleStyles())}/>}
-                {styles && <FontAwesomeIcon icon={faTimes} size="2x" onClick={() => dispatch(toggleStyles())}/>}
+                {!deck && <FontAwesomeIcon icon={faBoxOpen} size="2x" onClick={() => dispatch(toggleDeck())}/>}
+                {deck && <FontAwesomeIcon icon={faTimes} size="2x" onClick={() => dispatch(toggleDeck())}/>}
+                {/* {!styles && <FontAwesomeIcon icon={faPalette} size="2x" onClick={() => dispatch(toggleStyles())}/>}
+                {styles && <FontAwesomeIcon icon={faTimes} size="2x" onClick={() => dispatch(toggleStyles())}/>} */}
 
                 {!options && <FontAwesomeIcon icon={faSearch} size="2x" onClick={() => dispatch(toggleOptions())}/>}
                 {options && <FontAwesomeIcon icon={faTimes} size="2x" onClick={() => dispatch(toggleOptions())}/>}

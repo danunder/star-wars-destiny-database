@@ -32,9 +32,13 @@ const initState = {
     name: "",
     cardText: "",
     options:false,
-    styles:false,
+    styles: false,
+    
     deck: {
+        show: false,
         cards: {},
+        name: "",
+        description: ""
         }
         
     
@@ -68,6 +72,7 @@ const rootReducer = (state = initState, action) => {
         return {
             ...state,
             deck: {
+                ...state.deck,
                 cards: deck
             }
         }
@@ -138,12 +143,29 @@ const rootReducer = (state = initState, action) => {
         }
     }
 
+     if(action.type === 'TOGGLE_DECK'){
+
+        return{
+            ...state,
+            deck: {
+                ...state.deck,
+                show: !state.deck.show
+            },
+            styles: false,
+            options: false,
+        }
+     }
+    
     if(action.type === 'TOGGLE_OPTIONS'){
 
         return{
             ...state,
             options:!state.options,
-            styles:false
+            styles: false,
+            deck: {
+                ...state.deck,
+                show: false
+            }
         }
     }
 
@@ -153,7 +175,11 @@ const rootReducer = (state = initState, action) => {
         return{
             ...state,
             styles:!state.styles,
-            options:false
+            options: false,
+            deck: {
+                ...state.deck,
+                show: false
+            }
         }
     }
 
