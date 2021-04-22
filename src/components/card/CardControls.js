@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from "react-redux";
-import { modifyDeckCount } from '../../redux/actions/setActions';
+import { modifyDeckCount, getDeckLimit } from '../../redux/actions/setActions';
 
 export default function CardControls(props) {
 
   // LOGIC
   // display prop is true/false triggered by hover state of parent element
   const { code, display } = props;
+  const cards = useSelector(state => state.cards);
   const deck = useSelector(state => state.deck);
-  const deckCount = deck.cards[code] ? deck.cards[code] : null;  
-
+  const card = cards.filter(card => card.code === code)[0];
+  
+  const deckLimit = card.deck_limit;
+  const deckCount = deck.cards[code] ? deck.cards[code] : null;
+    
   const dispatch = useDispatch();
 
   const addToDeck = (e) => {
     e.preventDefault();
     dispatch(modifyDeckCount(code, "+1"));
+    // console.log(`Adding ${code} to deck! we are at ${deckCount} of ${deckLimit}` )
   }
 
   const removeFromDeck = (e) => {
@@ -32,10 +37,8 @@ export default function CardControls(props) {
 
   const floatingBoxStyle = {
     position: 'absolute',
-    height: '50%',
-    width: '25%',
-    maxHeight: '250px',
-    maxWidth: '100px',
+    height: '202px',
+    width: '75px',
     margin: 'auto',
     overflow: 'auto',
     top: '0', left: '0', bottom: '0', right: '0',
@@ -52,22 +55,35 @@ export default function CardControls(props) {
     alignItems: 'center',
   }
   
-  const incrementerStyle = {
+  const plusIncrementerStyle = {
     margin: '8',
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: deckCount < deckLimit? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 0, 0, 0.9)',
     
   }
 
-  const incrementerHoverStyle = {
+  const plusIncrementerHoverStyle = {
     margin: '8',
-    color: 'rgba(255, 255, 255, 1.0)',
-    boxShadow: '0 0 15px rgba(255, 255, 255, 0.8)',
+    color: deckCount < deckLimit? 'rgba(255, 255, 255, 1.0)' : 'rgba(255, 0, 0, 1.0)',
+    boxShadow: deckCount < deckLimit? '0 0 15px rgba(255, 255, 255, 1.0)' : '0 0 15px rgba(255, 0, 0, 1.0)',
     borderRadius: '25px'
 
   }
 
+    const minusIncrementerStyle = {
+    margin: '8',
+    color: 'rgba(255, 255, 255, 0.9)',
+    
+  }
+
+  const minusIncrementerHoverStyle = {
+    margin: '8',
+    color: 'rgba(255, 255, 255, 1.0)',
+    boxShadow: '0 0 15px rgba(255, 255, 255, 1.0)',
+    borderRadius: '25px'
+
+  }
   const deckCountStyle = {
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: deckCount > deckLimit? 'rgba(255, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)',
     textShadow: '#000 0px 0px 1px',  
     fontSize: '4rem'
   }
@@ -81,7 +97,7 @@ export default function CardControls(props) {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'rgba(255, 255, 255, 1.0)',
+    color: deckCount > deckLimit? 'rgba(255, 0, 0, 1.0)' : 'rgba(255, 255, 255, 1.0)',
     textShadow: '#000 2px 2px 3px',  
     fontSize: '4rem'
   }
@@ -94,7 +110,7 @@ export default function CardControls(props) {
                   <FontAwesomeIcon
                     onMouseEnter={() => setPlusHover(true)}
                     onMouseLeave={() => setPlusHover(false)}
-                    style={plusHover? incrementerHoverStyle: incrementerStyle}
+                    style={plusHover? plusIncrementerHoverStyle: plusIncrementerStyle}
                     icon={faPlusCircle}
                     size={"3x"} />
                 </div>
@@ -103,7 +119,7 @@ export default function CardControls(props) {
                   <FontAwesomeIcon
                     onMouseEnter={() => setMinusHover(true)}
                     onMouseLeave={() => setMinusHover(false)}
-                    style={minusHover? incrementerHoverStyle: incrementerStyle}
+                    style={deckCount > 0 && minusHover? minusIncrementerHoverStyle: minusIncrementerStyle}
                     icon={faMinusCircle}
                     size={"3x"} />
                 </div>

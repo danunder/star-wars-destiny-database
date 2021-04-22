@@ -49,10 +49,10 @@ const rootReducer = (state = initState, action) => {
     if (action.type === 'MODIFY_DECK_COUNT') {
         let deck = state.deck.cards;
         const code = action.code;
-        const card = state.cards.filter(card => card.code === code)[0]
+        
         if (action.val === "+1") {
             // console.log('adding card ' + code + ' with limit of ' + card.deck_limit)
-            if (deck[code] && deck[code] < card.deck_limit) {
+            if (deck[code]) {
                 deck[code] += 1;
             } else if (!deck[code]) {
                 deck[code] = 1;

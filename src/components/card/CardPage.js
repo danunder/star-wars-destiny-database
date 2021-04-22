@@ -71,11 +71,13 @@ function CardPage(props) {
 
             {rend.crd &&
                 <Card name={card.name} bod={false} imagesrc={card.imagesrc} code={card.code} loadColor={"white"} />}
-                <CardControls code={code} deckLimit={card.deck_limit} deckCount={deck[card.code]? deck[card.code]:0} display={true}/>
                 
-            {code &&
+            
+            { code && <div>
                 
-                <CardInfo crd={card} code={code} />
+                            <CardControls code={code} display={true} />
+                            <CardInfo crd={card} code={code} />
+                </div>
                 }
 
         </Link>
