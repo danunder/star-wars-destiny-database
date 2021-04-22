@@ -57,19 +57,19 @@ export default function CardControls(props) {
   
   const plusIncrementerStyle = {
     margin: '8',
-    color: deckCount < deckLimit? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 0, 0, 0.9)',
+    color: deckCount < deckLimit ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 0, 0, 0.9)',
     
   }
 
   const plusIncrementerHoverStyle = {
     margin: '8',
-    color: deckCount < deckLimit? 'rgba(255, 255, 255, 1.0)' : 'rgba(255, 0, 0, 1.0)',
-    boxShadow: deckCount < deckLimit? '0 0 15px rgba(255, 255, 255, 1.0)' : '0 0 15px rgba(255, 0, 0, 1.0)',
+    color: deckCount < deckLimit ? 'rgba(255, 255, 255, 1.0)' : 'rgba(255, 0, 0, 1.0)',
+    boxShadow: deckCount < deckLimit ? '0 0 15px rgba(255, 255, 255, 1.0)' : '0 0 15px rgba(255, 0, 0, 1.0)',
     borderRadius: '25px'
 
   }
 
-    const minusIncrementerStyle = {
+  const minusIncrementerStyle = {
     margin: '8',
     color: 'rgba(255, 255, 255, 0.9)',
     
@@ -83,8 +83,8 @@ export default function CardControls(props) {
 
   }
   const deckCountStyle = {
-    color: deckCount > deckLimit? 'rgba(255, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)',
-    textShadow: '#000 0px 0px 1px',  
+    color: deckCount > deckLimit ? 'rgba(255, 0, 0, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+    textShadow: '#000 0px 0px 1px',
     fontSize: '4rem'
   }
 
@@ -97,36 +97,38 @@ export default function CardControls(props) {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    color: deckCount > deckLimit? 'rgba(255, 0, 0, 1.0)' : 'rgba(255, 255, 255, 1.0)',
-    textShadow: '#000 2px 2px 3px',  
+    color: deckCount > deckLimit ? 'rgba(255, 0, 0, 1.0)' : 'rgba(255, 255, 255, 1.0)',
+    textShadow: '#000 2px 2px 3px',
     fontSize: '4rem'
   }
 
   return (
     <div style={floatingBoxStyle}>
       {/* These components are displayed when the parent card element is hovered */}
-              <div style={display ? cardControlsStyle : { display: 'none' }}>
-                <div onClick={(e) => addToDeck(e)} >
-                  <FontAwesomeIcon
-                    onMouseEnter={() => setPlusHover(true)}
-                    onMouseLeave={() => setPlusHover(false)}
-                    style={plusHover? plusIncrementerHoverStyle: plusIncrementerStyle}
-                    icon={faPlusCircle}
-                    size={"3x"} />
-                </div>
-        <h2 style={deckCountStyle}>{deckCount ? deckCount : 0}</h2>
-                <div onClick={(e) => removeFromDeck(e)}>
-                  <FontAwesomeIcon
-                    onMouseEnter={() => setMinusHover(true)}
-                    onMouseLeave={() => setMinusHover(false)}
-                    style={deckCount > 0 && minusHover? minusIncrementerHoverStyle: minusIncrementerStyle}
-                    icon={faMinusCircle}
-                    size={"3x"} />
-                </div>
-              </div>
+      {card &&
+        <div style={display ? cardControlsStyle : { display: 'none' }}>
+          <div onClick={(e) => addToDeck(e)} >
+            <FontAwesomeIcon
+              onMouseEnter={() => setPlusHover(true)}
+              onMouseLeave={() => setPlusHover(false)}
+              style={plusHover ? plusIncrementerHoverStyle : plusIncrementerStyle}
+              icon={faPlusCircle}
+              size={"3x"} />
+          </div>
+          <h2 style={deckCountStyle}>{deckCount ? deckCount : 0}</h2>
+          <div onClick={(e) => removeFromDeck(e)}>
+            <FontAwesomeIcon
+              onMouseEnter={() => setMinusHover(true)}
+              onMouseLeave={() => setMinusHover(false)}
+              style={deckCount > 0 && minusHover ? minusIncrementerHoverStyle : minusIncrementerStyle}
+              icon={faMinusCircle}
+              size={"3x"} />
+          </div>
+        </div>}
       {/* This heading displays non-zero deck counts when the card is NOT being hovered */}
-              <h2 style={display ? { display: 'none' } : floatingTextStyle} >{deckCount ? deckCount : ""}</h2>
-            </div>
+      <h2 style={display ? { display: 'none' } : floatingTextStyle} >{deckCount ? deckCount : ""}</h2>
+    </div>
+    
           )
 
 

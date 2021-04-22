@@ -28,7 +28,7 @@ function Nav() {
         <nav style={styler}>
             <div className={"logo"} >
                 {(style.name!==undefined)?<img alt={"logo"} src={require("./../../assets/"+style.name.toLowerCase()+"logo.svg")} onClick={()=>dispatch(clearOptions())}/>:<img alt={"logo"} src={require("./../../assets/convergencelogo.svg")} onClick={()=>dispatch(clearOptions())}/>}
-                <h5>Database</h5>
+                <h5>Deckbuilder</h5>
             </div>
             <Search />
             <TextSearch />

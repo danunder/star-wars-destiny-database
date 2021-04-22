@@ -91,7 +91,7 @@ function Card(props) {
                             src={props.imagesrc}
                             style={imgStyle}
                     />
-                    <CardControls code={props.code} deckLimit={props.deckLimit} deckCount={props.deckCount} display={display}/>
+                    <CardControls code={props.code} display={display}/>
                     
                     </div>}
                     {rend.load&&<FontAwesomeIcon icon={faSpinner} spin size={"lg"} style={{color:props.loadColor}}/>}

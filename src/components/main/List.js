@@ -190,7 +190,7 @@ function List() {
 
             <Link to={"/card/" + crd.code} key={idx} className={"cardFlop"}>
 
-                <Card name={crd.name} bod={true} imagesrc={crd.imagesrc} code={crd.code} deckLimit={crd.deck_limit} deckCount={deck[crd.code]? deck[crd.code]:0}
+                <Card name={crd.name} bod={true} imagesrc={crd.imagesrc} code={crd.code} 
                       loadColor={"#343740"}/>
             </Link>
         );
