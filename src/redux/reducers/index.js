@@ -51,21 +51,23 @@ const initState = {
 const rootReducer = (state = initState, action) => {
 
     if (action.type === 'MODIFY_DECK_COUNT') {
-        let deck = state.deck.cards;
+        let deck = state.deck;
         const code = action.code;
+        const card = state.cards.filter(card => card.code === code)[0];
         
         if (action.val === "+1") {
             // console.log('adding card ' + code + ' with limit of ' + card.deck_limit)
-            if (deck[code]) {
-                deck[code] += 1;
-            } else if (!deck[code]) {
-                deck[code] = 1;
+            if (deck.cards[code]) {
+                deck.cards[code].count += 1;
+            } else if (!deck.cards[code]) {
+                deck.cards[code] = card;
+                deck.cards[code].count = 1;
             }
         }
         if (action.val === "-1") {
-            deck[code] -= 1;
-            if (deck[code] === 0) {
-                delete deck[code]
+            deck.cards[code].count -= 1;
+            if (deck.cards[code].count === 0) {
+                delete deck.cards[code]
             }
         }
             
@@ -73,7 +75,7 @@ const rootReducer = (state = initState, action) => {
             ...state,
             deck: {
                 ...state.deck,
-                cards: deck
+                cards: deck.cards
             }
         }
     }
@@ -249,6 +251,7 @@ const rootReducer = (state = initState, action) => {
                 })
             }
         })
+        filterValues.subtypes.sort()
         return{
             ...state,
             filterValues: filterValues

@@ -14,7 +14,7 @@ export default function CardControls(props) {
   const card = cards.filter(card => card.code === code)[0];
   
   const deckLimit = card.deck_limit;
-  const deckCount = deck.cards[code] ? deck.cards[code] : null;
+  const deckCount = deck.cards[code] ? deck.cards[code].count : null;
   // const canBeElite = card.points && card.points.includes("/");
   const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ export default function CardControls(props) {
     margin: 'auto',
     overflow: 'auto',
     top: '0', left: '0', bottom: '0', right: '0',
-    zIndex: '1',
+    zIndex: 'auto',
   }
   
   const cardControlsStyle = {
