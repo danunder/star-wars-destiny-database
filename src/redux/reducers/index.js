@@ -64,7 +64,7 @@ const rootReducer = (state = initState, action) => {
                 deck.cards[code].count = 1;
             }
         }
-        if (action.val === "-1") {
+        if (deck.cards[code] && action.val === "-1") {
             deck.cards[code].count -= 1;
             if (deck.cards[code].count === 0) {
                 delete deck.cards[code]

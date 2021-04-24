@@ -11,27 +11,37 @@ export default function Deck() {
   
   // LOGIC
   const deck = useSelector(state => state.deck);
-  
+  const cards = useSelector(state => state.cards);
   
   const display = deck.show;
   
   const dispatch = useDispatch()
-
-  // const locations,
-  //   plots,
-  //   characters,
-  //   supports,
-  //   upgrades,
-  //   downgrades,
-  //   events
-  // } = 
+  
+  const characters = cards
+    .filter(card => Object.keys(deck.cards).includes(card.code))
+    .filter(card => card.type_name === "Character")
+  
+  const plots = cards
+    .filter(card => Object.keys(deck.cards).includes(card.code))
+    .filter(card => card.type_name === "Plot")
+  
+  
+    // [{
+    // code: "01001",
+    // imagesrc: "https://swdestinydb.com/bundles/cards/en/01/01001.jpg"},{
+    // code: "01002",
+    //   imagesrc: "https://swdestinydb.com/bundles/cards/en/01/01002.jpg"
+    //   }];
+  
+  
  
-
+ 
+  
   
   useEffect(() => {
     const locations = [];
     const plots = [];
-    const characters = [];
+    
     const supports = [];
     const upgrades = [];
     const downgrades = [];
@@ -138,14 +148,18 @@ export default function Deck() {
   }
 
   return (
-    <div style={display ? deckStyle : hide}
-      onClick={() => dispatch(toggleDeck())}>
+    <div style={display ? deckStyle : hide}>
       <div>
         <h2>Characters</h2>
-        <div style={{ position: 'relative' }}>
-        <img style={deckImageStyle} src="https://swdestinydb.com/bundles/cards/en/01/01002.jpg" alt="card"></img>
-        <CardControls code={"01002"} display={true}/>
-      </div>
+        {characters.map(card => {
+          return (
+            <div style={{ position: 'relative' }}>
+              <img style={deckImageStyle} src={card.imagesrc} alt="card"></img>
+              <CardControls code={card.code} display={true}/>
+            </div>
+          )
+        })}
+        
       </div>
       {/* {characters.map(char => {
         return (<img style={deckImageStyle} alt={char.name} src={char.imagesrc}></img>)
