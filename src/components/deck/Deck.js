@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggleDeck } from '../../redux/actions/setActions';
-import Card from '../card/Card.js'
-import CardControls from '../card/CardControls'
+import React from 'react';
+import { useSelector, } from 'react-redux';
+
 import SmallCard from '../deck/SmallCard'
 
 
@@ -44,9 +42,36 @@ export default function Deck() {
     .filter(card => Object.keys(deck.cards).includes(card.code))
     .filter(card => card.type_name === "Event")
   
- 
+  const supportCount = () => {
+    let count = 0;
+    for (let card of supports) {
+      count += card.count
+    }
+    return count
+  }
+  const upgradeCount = () => {
+    let count = 0;
+    for (let card of upgrades) {
+      count += card.count
+    }
+    return count
+  }
+  const downgradeCount = () => {
+    let count = 0;
+    for (let card of downgrades) {
+      count += card.count
+    }
+    return count
+  }
+  const eventCount = () => {
+    let count = 0;
+    for (let card of events) {
+      count += card.count
+    }
+    return count
+  }
 
-
+    const cardCount = () => supportCount() + upgradeCount() + downgradeCount() + eventCount()
   // STYLE
 
   const hide = {
@@ -65,7 +90,7 @@ export default function Deck() {
     width: '95%',
     margin: 'auto',
     overflow: 'auto',
-    top: '0', left: '0', bottom: '150px', right: '0',
+    top: '150px', left: '0', bottom: '150px', right: '0',
     zIndex: '10',
     backgroundColor: 'rgba(40, 44, 52, 0.77)',
     padding: '0 1rem',
@@ -78,7 +103,7 @@ export default function Deck() {
   
   }
 
-  const outerBox = {
+  const outerBoxStyle = {
     margin: '0 2rem 0 2rem',
 
   }
@@ -93,8 +118,9 @@ export default function Deck() {
 
   return (
     <div style={display ? deckStyle : hide}>
+      <h2 style={headingStyle}>{`${cardCount()} cards: ${supportCount()} Supports, ${upgradeCount()} Upgrades, ${downgradeCount()} Downgrades, ${eventCount()} Events `}</h2>
       {characters.length &&
-        <div style={outerBox}>
+        <div style={outerBoxStyle}>
           <h2 style={headingStyle}>Characters</h2>
         <div style={cardTypeWrapperStyle}>
           {characters.map(card => {
@@ -110,7 +136,7 @@ export default function Deck() {
       </div>
       }
      {plots.length &&
-        <div style={outerBox}>
+        <div style={outerBoxStyle}>
           <h2 style={headingStyle}>Plots</h2>
         <div style={cardTypeWrapperStyle}>
           {plots.map(card => {
@@ -126,7 +152,7 @@ export default function Deck() {
       </div>
       }
       {battlefields.length &&
-        <div style={outerBox}>
+        <div style={outerBoxStyle}>
           <h2 style={headingStyle}>Battlefields</h2>
         <div style={cardTypeWrapperStyle}>
           {battlefields.map(card => {
@@ -142,7 +168,7 @@ export default function Deck() {
       </div>
       }
       {upgrades.length &&
-        <div style={outerBox}>
+        <div style={outerBoxStyle}>
           <h2 style={headingStyle}>Upgrades</h2>
         <div style={cardTypeWrapperStyle}>
           {upgrades.map(card => {
@@ -158,7 +184,7 @@ export default function Deck() {
       </div>
       }
       {downgrades.length &&
-        <div style={outerBox}>
+        <div style={outerBoxStyle}>
           <h2 style={headingStyle}>Downgrades</h2>
         <div style={cardTypeWrapperStyle}>
           {downgrades.map(card => {
@@ -174,7 +200,7 @@ export default function Deck() {
       </div>
       }
       {supports.length &&
-        <div style={outerBox}>
+        <div style={outerBoxStyle}>
           <h2 style={headingStyle}>Supports</h2>
         <div style={cardTypeWrapperStyle}>
           {supports.map(card => {
@@ -190,7 +216,7 @@ export default function Deck() {
       </div>
       }
       {events.length &&
-        <div style={outerBox}>
+        <div style={outerBoxStyle}>
           <h2 style={headingStyle}>Events</h2>
         <div style={cardTypeWrapperStyle}>
           {events.map(card => {

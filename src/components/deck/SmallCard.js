@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faSpinner, faExclamationCircle, faCircle} from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from "react-redux";
 import CardControls from '../card/CardControls';
 import { Link } from 'react-router-dom';
 
@@ -26,8 +23,8 @@ export default function SmallCard(props) {
     return (
         
             <Link to={"/card/" + code} style={{ position: 'relative' }}
-            onMouseEnter={() => setDisplay(!display)}
-            onMouseLeave={() => setDisplay(!display)}>
+            onMouseEnter={() => setDisplay(true)}
+            onMouseLeave={() => setDisplay(false)}>
                 <img
                     alt={name}
                     src={imagesrc}
