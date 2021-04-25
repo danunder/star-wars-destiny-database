@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './less/style.css';
 
 import List from './components/main/List';
-import Deck from './components/nav/Deck'
+import Deck from './components/deck/Deck'
 import CardPage from './components/card/CardPage';
 import About from './components/main/About';
 import Nav from './components/nav/Navigation';

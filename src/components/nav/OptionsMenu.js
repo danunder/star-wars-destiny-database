@@ -71,7 +71,7 @@ function OptionsMenu(props){
         {
             name:"Type",
             type:"type_code",
-            values:["character", "upgrade", "support", "event", "downgrade", "plot"]
+            values:["character", "upgrade", "support", "event", "downgrade", "plot", "battlefield"]
         },
         {
             name:"Dice Sides",
